@@ -31,6 +31,17 @@ public class UserService {
         findById(id); //Busca o Id, caso não encontrado já lança uma exceção conforme o método.
         userRepository.deleteById(id);
     }
+    public User update(User obj){
+        User newUserObj = findById(obj.getId());
+        updateData(newUserObj, obj);
+        return userRepository.save(newUserObj);
+    }
+
+    private void updateData(User newUserObj, User obj) {
+        newUserObj.setName(obj.getName());
+        newUserObj.setEmail(obj.getEmail());
+    }
+
     public User fromDTO(UserDTO objDto){
         return new User(objDto.getId(), objDto.getName(), objDto.getEmail());
     }
