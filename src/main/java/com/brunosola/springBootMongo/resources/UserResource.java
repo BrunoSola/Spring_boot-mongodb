@@ -6,6 +6,7 @@ import com.brunosola.springBootMongo.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -28,5 +29,11 @@ public class UserResource {
         //UserDTO::new= Esta é uma expressão lambda referindo-se a um construtor da classe 'UserDTO' que tem como argumento um 'User'.
         List<UserDTO> userDTOS = users.stream().map(UserDTO::new).collect(Collectors.toList());
         return ResponseEntity.ok().body(userDTOS);
+    }
+
+    @GetMapping(value = "/{id}")
+    public ResponseEntity<UserDTO> findById(@PathVariable String id){ //@PathVariable para informar que o 'id' sera fornecido na url.
+        User obj = userService.findById(id);
+        return ResponseEntity.ok().body(new UserDTO(obj));
     }
 }
