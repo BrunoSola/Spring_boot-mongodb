@@ -1,5 +1,6 @@
 package com.brunosola.springBootMongo.resources;
 
+import com.brunosola.springBootMongo.domain.Post;
 import com.brunosola.springBootMongo.domain.User;
 import com.brunosola.springBootMongo.dto.UserDTO;
 import com.brunosola.springBootMongo.services.UserService;
@@ -35,6 +36,12 @@ public class UserResource {
     public ResponseEntity<UserDTO> findById(@PathVariable String id){ //@PathVariable para informar que o 'id' sera fornecido na url.
         User obj = userService.findById(id);
         return ResponseEntity.ok().body(new UserDTO(obj));
+    }
+    
+    @GetMapping(value = "/{id}/posts")
+    public ResponseEntity<List<Post>> findPosts(@PathVariable String id){
+        User obj = userService.findById(id);
+        return ResponseEntity.ok().body(obj.getPosts());
     }
 
     @PostMapping
