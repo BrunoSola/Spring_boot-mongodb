@@ -4,28 +4,29 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.io.Serializable;
+import java.util.Date;
 
 @Document
 @Getter @Setter @NoArgsConstructor @AllArgsConstructor
-public class User implements Serializable {
+public class Post implements Serializable {
 
-    @Id
     private String id;
-    private String name;
-    private String email;
+    private Date date;
+    private String title;
+    private String body;
+    private User author;
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        User user = (User) o;
+        Post post = (Post) o;
 
-        return id.equals(user.id);
+        return id.equals(post.id);
     }
 
     @Override
