@@ -11,7 +11,7 @@ import java.util.Date;
 import java.util.List;
 
 @RestController //Identifica que a classe será um recurso REST
-@RequestMapping(value = "/posts") // Caminho do endpoint da aplicação. http://localhost:8080/users
+@RequestMapping(value = "/posts")
 public class PostResource {
     @Autowired
     private PostService postService;
