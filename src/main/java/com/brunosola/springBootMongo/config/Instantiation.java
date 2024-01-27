@@ -13,8 +13,6 @@ import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.TimeZone;
 
-import static java.util.Arrays.*;
-
 @Configuration
 public class Instantiation implements CommandLineRunner {
     @Autowired
